@@ -28,6 +28,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--<dependency>	&lt;!&ndash;to build a WAR -  add the Tomcat dependency&ndash;&gt;
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -106,6 +111,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${artifactId}</finalName> <!-- modify the final WAR file name to avoid including version numbers-->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
