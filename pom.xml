@@ -111,7 +111,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName> <!-- modify the final WAR file name to avoid including version numbers-->
+		<finalName>${project.artifactId}</finalName> <!-- modify the final WAR file name to avoid including version numbers-->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
