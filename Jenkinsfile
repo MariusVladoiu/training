@@ -10,6 +10,10 @@ pipeline {
                     ls -lah
                 '''
             }
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploy Hello World"'
+            }
         }
     }
 }
