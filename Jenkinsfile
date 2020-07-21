@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
 		sh 'echo $JAVA_HOME'
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
         stage('Test') {
