@@ -22,6 +22,9 @@ pipeline {
         }
         success {
             echo 'I succeeeded!'
+	    mail to: 'marius.vladoiu@gmail.com',
+             subject: "Failed Pipeline: XXX",
+             body: "Something is wrong with YYY"
         }
         unstable {
             echo 'I am unstable :/'
