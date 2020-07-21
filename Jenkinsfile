@@ -1,16 +1,20 @@
 pipeline {
-    agent any
-    stages {
-        stage('Test') {
-            steps {
-                sh './mvn clean'
-            }
-        }
+    agent {
+        label '!windows'
     }
-    post {
-        always {
-            echo 'This will always run - always post'
-            //junit 'build/reports/**/*.xml'
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
+            }
         }
     }
 }
