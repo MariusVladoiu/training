@@ -1,10 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
 		sh 'echo $JAVA_HOME'
                 sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
