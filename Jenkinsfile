@@ -1,4 +1,17 @@
 pipeline {
+    agent {
+        docker { image 'node:14-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+
+/*pipeline {
     agent any
     stages {
         stage('Build') {
@@ -40,4 +53,4 @@ pipeline {
             echo 'For example, if the Pipeline was previously failing but is now successful'
         }
     }
-}
+}*/
