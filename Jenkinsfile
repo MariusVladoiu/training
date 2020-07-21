@@ -18,7 +18,7 @@ pipeline {
             echo 'This will always run'		
             //archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
             junit 'target/surefire-reports/**/*.xml'
-	    deleteDir() /* clean up our workspace */
+	    //deleteDir() /* clean up our workspace */
         }
         success {
             echo 'I succeeeded!'
