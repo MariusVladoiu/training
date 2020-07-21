@@ -1,12 +1,16 @@
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-    }
+    agent any
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh './mvn clean'
             }
+        }
+    }
+    post {
+        always {
+            echo 'This will always run - always post'
+            //junit 'build/reports/**/*.xml'
         }
     }
 }
