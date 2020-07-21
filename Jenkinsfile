@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+		sh 'echo $JAVA_HOME'
                 sh 'mvn clean'
             }
         }
