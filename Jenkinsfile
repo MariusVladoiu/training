@@ -7,6 +7,11 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+        stage('Sanity check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
+        }
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -22,9 +27,9 @@ pipeline {
         }
         success {
             echo 'I succeeeded!'
-	    mail to: 'marius.vladoiu@gmail.com',
+	    /*mail to: 'marius.vladoiu@gmail.com',
              subject: "Failed Pipeline: XXX",
-             body: "Something is wrong with YYY"
+             body: "Something is wrong with YYY"*/
         }
         unstable {
             echo 'I am unstable :/'
