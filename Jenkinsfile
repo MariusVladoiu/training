@@ -3,6 +3,8 @@ pipeline {
 
     stages {
         stage('Example') {
+		sh 'echo hello' /* short form  */
+		sh([script: 'echo hello'])  /* long form */
             environment { 
                 DEBUG_FLAGS = '-g'
             }
