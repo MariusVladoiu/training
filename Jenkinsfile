@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                //sh 'make' 
-                archiveArtifacts artifacts: '**/target/*.war', fingerprint: true 
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                junit '**/target/*.xml' 
             }
         }
     }
