@@ -1,44 +1,12 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
-		sh 'echo $JAVA_HOME'
-                sh 'mvn clean package -DskipTests'
+                sh 'make' 
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
             }
-        }
-        stage('Sanity check') {
-            steps {
-                input "Does the staging environment look ok?"
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-    }
-    post {
-        always {
-            echo 'This will always run'		
-            //archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'target/surefire-reports/**/*.xml'
-	    //deleteDir() /* clean up our workspace */
-        }
-        success {
-            echo 'I succeeeded!'
-	    /*mail to: 'marius.vladoiu@gmail.com',
-             subject: "Failed Pipeline: XXX",
-             body: "Something is wrong with YYY"*/
-        }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
         }
     }
 }
