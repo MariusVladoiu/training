@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Example') {
+            environment { 
+                DEBUG_FLAGS = '-g'
+            }
+            steps {
+                sh 'printenv'
+            }
+        }
         stage('Test') {
             steps {
                 /* `make check` returns non-zero on test failures,
