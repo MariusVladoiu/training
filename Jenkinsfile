@@ -7,7 +7,7 @@ pipeline {
                 /* `make check` returns non-zero on test failures,
                 * using `true` to allow the Pipeline to continue nonetheless
                 */
-		jh 'mvn test'
+		sh 'mvn test'
                 junit '**/target/surefire-reports/*.xml' 
             }
         }
