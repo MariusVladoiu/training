@@ -2,23 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Example') {
-            environment { 
-                DEBUG_FLAGS = '-g'
-            }
+        stage('Package') {
             steps {
-		sh 'echo hello' /* short form  */
-		sh([script: 'echo hello'])  /* long form */
-                sh 'printenv'
+		sh 'mvn package'
             }
         }
-        stage('Test') {
+        stage('Deploy') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-		sh 'mvn test'
-                junit '**/target/surefire-reports/*.xml' 
+		sh 'mvn deploy'
             }
         }
     }
@@ -35,6 +26,7 @@ pipeline {
 					pwd
                     ls -lah
                 '''
+                sh 'printenv'
             }
         }
 		stage('Deploy') {
