@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Package') {
             steps {
-		sh 'mvn package'
+		sh 'mvn clean package'
             }
         }
         stage('Deploy') {
             steps {
-		sh 'mvn deploy'
+		sh 'mvn tomcat7:deploy'
             }
         }
     }
