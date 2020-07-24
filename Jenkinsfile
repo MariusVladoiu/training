@@ -1,16 +1,16 @@
 pipeline {
     agent any
+
     stages {
-        stage('Test') {
+        stage('Package') {
             steps {
-                sh './mvn clean'
+		sh 'mvn clean package'
             }
         }
-    }
-    post {
-        always {
-            echo 'This will always run'
-            //junit 'build/reports/**/*.xml'
+        stage('Deploy') {
+            steps {
+		sh 'mvn tomcat7:deploy'
+            }
         }
     }
 }
@@ -26,6 +26,7 @@ pipeline {
 					pwd
                     ls -lah
                 '''
+                sh 'printenv'
             }
         }
 		stage('Deploy') {
